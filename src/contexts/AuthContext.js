@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase.js'
 
 
@@ -12,29 +12,39 @@ export function useAuth() {
 export default function AuthProvider({children}) {
 
     const [currentUser, setCurrentUser] = useState()
+    const [loading, setLoading] = useState(false)
 
     const auth = getAuth();
+    
     const signup = async (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
             const user = userCredential.user;
         }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
         })
     }
-
+    
     const signin = async (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        });
     }
-
+    
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user =>{
-            setCurrentUser(user)
-        })
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+                setCurrentUser(user)
+                setLoading(false)
 
+        })
         return unsubscribe
     }, [])
-
+    
     const value = {
         currentUser,
         signup
@@ -42,7 +52,7 @@ export default function AuthProvider({children}) {
 
     return ( 
         <AuthContext.Provider value={value}>
-            {children}
+            {!loading && children}
         </AuthContext.Provider>
      );
 }

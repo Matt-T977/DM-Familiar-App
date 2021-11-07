@@ -4,6 +4,9 @@ import { Redirect, Routes, Route } from 'react-router';
 import { Counter } from './features/counter/Counter';
 import SignUp from './features/SignUp/SignUp'
 import './App.css';
+import AuthProvider from './contexts/AuthContext';
+import Dashboard from './features/Dashboard/Dashboard';
+import Login from './features/Login/Login';
 
 
 // var firebase = require('firebase');
@@ -14,21 +17,20 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Container className='d-flex align-items-center justify-content-center' style = {{minHeight: '100vh'}}>
-        <div className='w-100' style = {{maxWidth: '400px'}}>
-          <SignUp />
-        </div>
-      </Container>
-        {/* <Routes>
-          <Route path = '/' exact />
-          <Route path = '/signup' element = {SignUp} />
-          <Route path = '/login' />
-          <Route path = '/projects' />
-          <Route path = '/create-project' />
-          <Redirect to = '/not-found' />
-        </Routes> */}
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <Container >
+          <Routes>
+            <Route exact path = '/' element = {<Dashboard /> } />
+            <Route path = '/signup' element = {<SignUp /> } />
+            <Route path = '/login' element = {<Login/> }/>
+            {/* <Route path = '/projects' /> */}
+            {/* <Route path = '/create-project' /> */}
+            {/* <Redirect to = '/not-found' /> */}
+          </Routes>
+        </Container>
+      </div>
+    </AuthProvider>
   );
 }
 
