@@ -18,26 +18,21 @@ function ProjectCreator() {
         include_video: false,
         include_audio: false,
         include_location: false,
-        
     })
 
     const handleCheck = (e) => {
         e.persist();
-        
-        // if(e.target.value === false){
+        if (e.target.checked) {
             setProject(currentState =>({
                 ...currentState,
                 [e.target.name]: true,
             }))
-        // }
-        // else{
-        //     setProject(currentState =>({
-        //         ...currentState,
-        //         [e.target.name]: false,
-        //     }))
-        // }
-
-        console.log(project)
+        } else {
+            setProject(currentState =>({
+                ...currentState,
+                [e.target.name]: false,
+            }))
+        }
     }
 
     const handleSubmit = (e) => {
@@ -49,15 +44,14 @@ function ProjectCreator() {
             summary:summaryRef.current.value,
             creation_date: dateRef.current.value,
         }))
-
         console.log(project)
     }
 
 
 
     return ( 
-        <Container clasName='d-flex align-items-center justify-content-center' style={{minHeight: '100vh'}}>
-            <Row className='w-100 mt-5 align-items-center' 
+        <Container className='d-flex align-items-center justify-content-center' style={{minHeight: '100vh'}}>
+            <Row className='w-100 align-items-center' 
             style = {{
                 maxWidth: '90vw',
                 minHeight: '80vh',
@@ -67,7 +61,7 @@ function ProjectCreator() {
                 borderWidth: '5px',
                 borderRadius: '1rem',
                 }}>
-                <Col className='mx-1'>
+                <Col className='m-3'>
                     <Container>
                         <img className='d-block w-100 shadow' src={projectStockImage} alt='stock' 
                         style={{
@@ -87,7 +81,7 @@ function ProjectCreator() {
                         </Button>
                     </Container>
                 </Col>
-                <Col className='mx-1'>
+                <Col className='m-3'>
                     <h2 className='text-center mb-3'>Create your Project!</h2>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group>
@@ -107,7 +101,7 @@ function ProjectCreator() {
                             <Col>
                                 <Form.Group>
                                     <Form.Label>Characters?</Form.Label>
-                                    <Form.Check type='checkbox' name = "include_char_sheet" value ={project.include_char_sheet} onClick={handleCheck}/>
+                                    <Form.Check type='checkbox' name = "include_char_sheet"  checked={project.include_char_sheet} onChange={handleCheck}/>
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>Documents?</Form.Label>
@@ -134,7 +128,7 @@ function ProjectCreator() {
                             </Col>
                         </Row>
                         
-                        <Button className='w-100' variant='primary' type='submit'>Create Project</Button>
+                        <Button className='d-flex w-50 mx-auto justify-content-center mt-3' variant='primary' type='submit'>Create Project</Button>
                     </Form>
                 </Col>
             </Row>
