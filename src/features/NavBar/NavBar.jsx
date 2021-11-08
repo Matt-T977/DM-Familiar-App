@@ -12,7 +12,7 @@ const NavBar = (props) => {
     return (
         <div className='row header-style justify-content-end' style={{maxHeight: '45px'}}>
             <div className='col-2'></div>
-            <div className='col'>
+            <div className='col text-center'>
                 <div className='h2'>DM's Familiar</div>
             </div>
             <div className='col-2 align-self-middle'>
