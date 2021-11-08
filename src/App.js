@@ -7,6 +7,7 @@ import './App.css';
 import AuthProvider from './contexts/AuthContext';
 import Dashboard from './features/Dashboard/Dashboard';
 import Login from './features/Login/Login';
+import PrivateRoute from './PrivateRoute';
 
 
 // var firebase = require('firebase');
@@ -21,7 +22,7 @@ function App() {
       <div className="App">
         <Container >
           <Routes>
-            <Route exact path = '/' element = {<Dashboard /> } />
+            <PrivateRoute exact path = '/' element = {<Dashboard /> } />
             <Route path = '/signup' element = {<SignUp /> } />
             <Route path = '/login' element = {<Login/> }/>
             {/* <Route path = '/projects' /> */}

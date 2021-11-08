@@ -13,8 +13,8 @@ export default function AuthProvider({children}) {
 
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(false)
-
     const auth = getAuth();
+
     
     const signup = async (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -26,7 +26,7 @@ export default function AuthProvider({children}) {
         })
     }
     
-    const signin = async (email, password) => {
+    const login = async (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
@@ -47,6 +47,7 @@ export default function AuthProvider({children}) {
     
     const value = {
         currentUser,
+        login,
         signup
     }
 
