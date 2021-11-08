@@ -1,9 +1,9 @@
 import React from 'react';
+import './App.css';
 import { Container } from 'react-bootstrap';
 import { Routes, Route } from 'react-router';
 import { Counter } from './features/counter/Counter';
 import SignUp from './features/SignUp/SignUp'
-import './App.css';
 import AuthProvider from './contexts/AuthContext';
 import Dashboard from './features/Dashboard/Dashboard';
 import Login from './features/Login/Login';
