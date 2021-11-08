@@ -10,14 +10,15 @@ const NavBar = (props) => {
 
     
     return (
-        <div className='row header-style'>
-            <div>
-                <div className='h1'>DM's Familiar</div>
+        <div className='row header-style justify-content-end' style={{maxHeight: '45px'}}>
+            <div className='col-2'></div>
+            <div className='col'>
+                <div className='h2'>DM's Familiar</div>
             </div>
-            <div>
+            <div className='col-2 align-self-middle'>
                 <Nav>
-                    <ul>
-                        {/* {currentUser &&
+                    <ul className='nav justify-content-end'>
+                        {currentUser &&
                             <React.Fragment>
                                 <li>
                                     <Link to = '/' className = 'nav-link'>Home</Link>
@@ -26,11 +27,11 @@ const NavBar = (props) => {
                                     <Link to = '/projects' className = 'nav-link'>Projects</Link>
                                 </li>
                                 <li>
-                                    <a onClick = {logout} className = 'nav-link'>Log Out</a>
+                                    <Link to = '/login' onClick = {logout} className = 'nav-link'>Log Out</Link>
                                 </li>
                             </React.Fragment>
-                        } */}
-                        {/* {!currentUser &&
+                        }
+                        {!currentUser &&
                             <React.Fragment>
                                 <li>
                                     <Link to = '/login' className = 'nav-link'>Log In</Link>
@@ -39,7 +40,7 @@ const NavBar = (props) => {
                                     <Link to = '/signup' className = 'nav-link'>Sign Up</Link>
                                 </li>
                             </React.Fragment>
-                        } */}
+                        }
                     </ul>
                 </Nav>
             </div>

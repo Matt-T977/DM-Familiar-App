@@ -7,6 +7,7 @@ import SignUp from './features/SignUp/SignUp'
 import AuthProvider from './contexts/AuthContext';
 import Dashboard from './features/Dashboard/Dashboard';
 import Login from './features/Login/Login';
+import NavBar from './features/NavBar/NavBar';
 
 
 // var firebase = require('firebase');
@@ -21,6 +22,7 @@ function App() {
   return (
     <AuthProvider>
       <div className="App">
+        <NavBar />
         <Container >
           <Routes>
             <Route path = '/' exact element = {<Dashboard /> } />
