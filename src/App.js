@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Container } from 'react-bootstrap';
 import { Routes, Route } from 'react-router';
+import axios from 'axios';
 import { Counter } from './features/counter/Counter';
 import BGImage from './Static/BGImage.jpg'
 import SignUp from './features/SignUp/SignUp'

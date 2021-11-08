@@ -1,10 +1,13 @@
 import React, { useState, useRef } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 import projectStockImage from '../../Static/projectStockImage.jpg'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import axios from 'axios';
 
 
 function ProjectCreator() {
 
+    const auth = useAuth()
     const nameRef = useRef()
     const summaryRef = useRef()
     const dateRef = useRef()
@@ -45,6 +48,17 @@ function ProjectCreator() {
             creation_date: dateRef.current.value,
         }))
         console.log(project)
+        console.log(auth.currentUser.uid)
+        postProject(project, auth.currentUser.uid);
+    }
+
+    const postProject = async (project, userID) => {
+        await axios.post('http://127.0.0.1:8000/' + userID + '/project/', project)
+        .then( res => {
+            console.log(res)
+        }).catch(err => {
+            console.log("Error in postProject: " + err);
+        });
     }
 
 
