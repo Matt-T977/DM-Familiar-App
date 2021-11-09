@@ -34,7 +34,7 @@ function App() {
             backgroundSize: 'cover',
         }} >
         <NavBar />
-        <Container className='w-100' >
+        <Container className='w-100' style={{minWidth: '100vw'}} >
           <Routes>
             <Route path = '/' exact element = {<Dashboard /> } />
             <Route path = '/signup' element = {<SignUp /> } />

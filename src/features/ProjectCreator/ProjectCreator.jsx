@@ -142,7 +142,16 @@ function ProjectCreator() {
                             </Col>
                         </Row>
                         
-                        <Button className='d-flex w-50 mx-auto justify-content-center mt-3' variant='primary' type='submit'>Create Project</Button>
+                        <Button className='d-flex w-50 mx-auto justify-content-center mt-3' type='submit' 
+                            style={{
+                                backgroundColor: '#B85C38',
+                                borderColor: '#B85C38',
+                                color: '#E0C097',
+                                fontFamily: ('EB Garamond', 'serif'),
+                                fontStyle: 'italic',
+                            }}>
+                            Create Project
+                        </Button>
                     </Form>
                 </Col>
             </Row>
