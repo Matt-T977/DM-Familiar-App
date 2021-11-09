@@ -11,6 +11,7 @@ import Dashboard from './features/Dashboard/Dashboard';
 import Login from './features/Login/Login';
 import NavBar from './features/NavBar/NavBar';
 import ProjectCreator from './features/ProjectCreator/ProjectCreator';
+import Projects from './features/Projects/Projects';
 
 
 // var firebase = require('firebase');
@@ -38,7 +39,7 @@ function App() {
             <Route path = '/' exact element = {<Dashboard /> } />
             <Route path = '/signup' element = {<SignUp /> } />
             <Route path = '/login' element = {<Login/> }/>
-            {/* <Route path = '/projects' /> */}
+            <Route path = '/projects' element = {<Projects />}/>
             <Route path = '/create-project' element = {<ProjectCreator />}/>
             {/* <Redirect to = '/not-found' /> */}
           </Routes>
