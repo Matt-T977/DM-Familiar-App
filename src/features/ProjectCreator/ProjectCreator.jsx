@@ -47,8 +47,6 @@ function ProjectCreator() {
             summary:summaryRef.current.value,
             creation_date: dateRef.current.value,
         }))
-        console.log(project)
-        console.log(auth.currentUser.uid)
         postProject(project, auth.currentUser.uid);
     }
 

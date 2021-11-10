@@ -1,25 +1,14 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 // import { Link } from 'react-router-dom';
-// import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import Book from '../Book/Book';
 
 
-function Dashboard() {
+function Dashboard(props) {
 
-    // const { currentUser } = useAuth()
-    // const [error, setError] = useState("")
-    // const [project, setProject] = useState({
-    //     name: '',
-    //     summary: '',
-    //     creation_date: '',
-    //     include_char_sheet: false,
-    //     include_text_doc: false,
-    //     include_static_assets: false,
-    //     include_video: false,
-    //     include_audio: false,
-    //     include_location: false,
-    // })
+    const { currentUser } = useAuth()
+    const [error, setError] = useState("")
 
 
 
@@ -36,14 +25,14 @@ function Dashboard() {
                     borderWidth: '5px',
                     // borderRadius: '1rem',
                 }}>
-                    Project Nav
+                    {props.currentProject.name}
                 </Col>
                 <Col 
                 style={{
                     maxWidth: '85vw',
                     maxHeight: '100vh'
                 }}>
-                    <Book />
+                    <Book currentProject={props.currentProject}/>
                 </Col>
             </Row>
         </Container>

@@ -23,7 +23,7 @@ function App() {
 
   const auth = useAuth()
   const [projectList, setProjectList] = useState({projects : []})
-  const [currentProject, setCurrentProject] = useState()
+  const [currentProject, setCurrentProject] = useState({currentProject : {}})
 
 
   const getProjectList = async (userID) => {
@@ -33,7 +33,8 @@ function App() {
 
   const getCurrentProject = async (ProjectID, userID) => {
     let response = await axios.get('http://127.0.0.1:8000/' + userID + '/project/' + ProjectID);
-    setCurrentProject(response)};
+    setCurrentProject({currentProject : response.data})};
+    console.log(currentProject)
 
   return (
     <AuthProvider>
@@ -51,7 +52,7 @@ function App() {
             <Route path = '/' exact element = {<Projects getProjectList={getProjectList} projects={projectList.projects} getCurrentProject={getCurrentProject}/>} />
             <Route path = '/signup' element = {<SignUp /> } />
             <Route path = '/login' element = {<Login /> } />
-            <Route path = '/dashboard' element = {<Dashboard currentProject={currentProject}/>} />
+            <Route path = '/dashboard' element = {<Dashboard currentProject={currentProject.currentProject}/>} />
             <Route path = '/create-project' element = {<ProjectCreator getCurrentProject={getCurrentProject}/>} />
             {/* <Redirect to = '/not-found' /> */}
           </Routes>

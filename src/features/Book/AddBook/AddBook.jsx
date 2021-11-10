@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-function AddBook() {
+function AddBook(props) {
     const auth = useAuth();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -26,7 +26,7 @@ function AddBook() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(book)
-        postBook(book, 1, auth.currentUser.uid)
+        postBook(book, props.currentProject.name, auth.currentUser.uid)
     }
 
     const postBook = async (book, projectID, userID) => {

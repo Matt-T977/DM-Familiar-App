@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import AddBook from './AddBook/AddBook';
 
 
-function Book() {
+function Book(props) {
     const auth = useAuth()
 
 
@@ -20,7 +20,7 @@ function Book() {
                 borderWidth: '5px',
                 borderRadius: '1rem',
                 }}>
-                <AddBook />
+                <AddBook currentProject={props.currentProject}/>
             </Row>
         </Container>
      );

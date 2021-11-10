@@ -12,11 +12,13 @@ function Projects(props) {
 
     const handleOpenProject = (projectId) =>{
         props.getCurrentProject(projectId, auth.currentUser.uid)
+        console.log("Get Current")
         navigate('/dashboard')
     }
 
     useEffect(() => {
         props.getProjectList(auth.currentUser.uid)
+        console.log("Get Project List effect")
     }, []);
 
     return ( 
