@@ -2,12 +2,18 @@ import React, { useEffect } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import StockProjectArt from '../../Static/StockProjectArt.jpg'
 import { useAuth } from '../../contexts/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import axios from 'axios';
 
 
 function Projects(props) {
     const auth = useAuth();
+    const navigate = useNavigate()
+
+    const handleOpenProject = (projectId) =>{
+        props.getCurrentProject(projectId, auth.currentUser.uid)
+        navigate('/dashboard')
+    }
 
     useEffect(() => {
         props.getProjectList(auth.currentUser.uid)
@@ -51,7 +57,7 @@ function Projects(props) {
                                         style={{
                                             position: 'absolute',
                                             bottom: '.5rem',
-                                            right: '13rem',
+                                            left: '1rem',
                                             backgroundColor: '#B85C38',
                                             borderColor: '#B85C38',
                                             color: '#E0C097',
@@ -60,11 +66,11 @@ function Projects(props) {
                                         }}>
                                             Edit
                                         </Button>
-                                        <Link to='/dashboard' className='w-25 shadow btn nav-link'
+                                        <Button onClick={() => handleOpenProject(project.name)} className='w-25 shadow btn'
                                         style={{
                                             position: 'absolute',
                                             bottom: '.5rem',
-                                            right: '7rem',
+                                            right: '38%',
                                             backgroundColor: '#B85C38',
                                             borderColor: '#B85C38',
                                             color: '#E0C097',
@@ -72,7 +78,7 @@ function Projects(props) {
                                             fontStyle: 'italic',
                                         }}>
                                             Open
-                                        </Link>
+                                        </Button>
                                         <Button className='w-25 shadow'
                                         style={{
                                             position: 'absolute',
