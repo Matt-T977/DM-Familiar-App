@@ -20,10 +20,7 @@ const NavBar = (props) => {
                         {currentUser &&
                             <React.Fragment>
                                 <li>
-                                    <Link to = '/' className = 'nav-link' style={{color: '#B85C38',}}>Home</Link>
-                                </li>
-                                <li>
-                                    <Link to = '/projects' className = 'nav-link' style={{color: '#B85C38',}}>Projects</Link>
+                                    <Link to = '/' className = 'nav-link' style={{color: '#B85C38',}}>Projects</Link>
                                 </li>
                                 <li>
                                     <Link to = '/create-project' className = 'nav-link' style={{color: '#B85C38',}}>New Project</Link>

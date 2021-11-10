@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Container } from 'react-bootstrap';
 import { Routes, Route } from 'react-router';
 import axios from 'axios';
-import { Counter } from './features/counter/Counter';
 import BGImage from './Static/BGImage.jpg'
 import SignUp from './features/SignUp/SignUp'
 import AuthProvider from './contexts/AuthContext';
@@ -23,6 +22,19 @@ import Projects from './features/Projects/Projects';
 function App() {
 
 
+  const [projectList, setProjectList] = useState({projects : []})
+  // const [currentProject, setCurrentProject] = useState()
+
+
+  const getProjectList = async (userID) => {
+    let response = await axios.get('http://127.0.0.1:8000/' + userID + '/project/');
+    setProjectList({projects: response.data,})};
+    console.log(projectList)
+
+  // const getCurrentProject = async (ProjectID, userID) => {
+  //   let response = await axios.get('http://127.0.0.1:8000/' + userID + '/project/' + ProjectID);
+  //   setCurrentProject(response)};
+
   return (
     <AuthProvider>
       <div className="App" style={{
@@ -36,10 +48,10 @@ function App() {
         <NavBar />
         <Container className='w-100' style={{minWidth: '100vw'}} >
           <Routes>
-            <Route path = '/' exact element = {<Dashboard /> } />
+            <Route path = '/' exact element = {<Projects getProjectList={getProjectList} projects={projectList.projects}/> }  />
             <Route path = '/signup' element = {<SignUp /> } />
-            <Route path = '/login' element = {<Login/> }/>
-            <Route path = '/projects' element = {<Projects />}/>
+            <Route path = '/login' element = {<Login /> } />
+            <Route path = '/dashboard' element = {<Dashboard /> }/>
             <Route path = '/create-project' element = {<ProjectCreator />}/>
             {/* <Redirect to = '/not-found' /> */}
           </Routes>
