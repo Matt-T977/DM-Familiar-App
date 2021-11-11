@@ -28,12 +28,11 @@ function Projects(props) {
 
     return ( 
         <Container className='d-flex justify-content-center align-items-center' style={{minHeight: '100vh', minWidth: '100vw'}}>
-            <Row md={2} xs={1} className='w-100 justify-content-center overflow-auto'>
+            <Row lg={2} md={1} className='w-100 justify-content-center overflow-auto'>
                 {props.projects.map((project) => (
-                    <Col className='m-2'
+                    <Col lg={5} md={10} className='m-2'
                     style={{
                         maxHeight: '50vh',
-                        maxWidth: '40vw',
                         backgroundColor: '#E0C097',
                         borderStyle: 'solid',
                         borderColor: '#5C3D2E',
