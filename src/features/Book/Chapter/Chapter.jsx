@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Accordion, Container, Row } from 'react-bootstrap';
-import { useAuth } from '../../../contexts/AuthContext';
 import AddChapter from '../AddChapter/AddChapter';
 
 
 function Chapter(props) {
-    const auth = useAuth()
 
 
     return ( 
         <Container>
             <Row>
-                <Accordion>
+                <Accordion className='mt-1'>
                     {props.chapters.map(chapter =>
                         <Accordion.Item>
                             <Accordion.Header>

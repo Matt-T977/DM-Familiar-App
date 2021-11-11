@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 
 
-function ProjectCreator() {
+function ProjectCreator(props) {
 
     const auth = useAuth()
     const nameRef = useRef()
@@ -47,7 +47,7 @@ function ProjectCreator() {
             ...project,
             [e.target.name]: e.target.value,
         }));
-        
+
     }
 
     const handleSubmit = (e) => {
@@ -59,13 +59,14 @@ function ProjectCreator() {
             console.log('No Project Posted')
         }
 
-        navigate('/');
+        navigate('/dashboard');
     }
 
     const postProject = async (project, userID) => {
         await axios.post('http://127.0.0.1:8000/' + userID + '/project/', project)
         .then( res => {
             console.log(res)
+            props.getCurrentProject(project.name, auth.currentUser.uid);
         }).catch(err => {
             console.log("Error in postProject: " + err);
         });

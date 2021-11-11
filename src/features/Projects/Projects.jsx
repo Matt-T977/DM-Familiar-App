@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Button, Card, Col, Container, Row, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import StockProjectArt from '../../Static/StockProjectArt.jpg'
 import { useAuth } from '../../contexts/AuthContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import axios from 'axios';
 
 
