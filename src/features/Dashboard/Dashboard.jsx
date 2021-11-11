@@ -6,6 +6,7 @@ import stockReference from '../../Static/stockReference.jpg'
 import locationStock from '../../Static/locationStock.jpg'
 import { useAuth } from '../../contexts/AuthContext';
 import Book from '../Book/Book';
+import CharacterList from '../Character/CharacterList';
 
 
 function Dashboard(props) {
@@ -125,7 +126,8 @@ function Dashboard(props) {
                     maxWidth: '100vw',
                     maxHeight: '100vh'
                 }}>
-                    <Book currentProject={props.currentProject}/>
+                    {/* <Book currentProject={props.currentProject}/> */}
+                    <CharacterList  currentProject={props.currentProject}/>
                 </Col>
             </Row>
         </Container>
