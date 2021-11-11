@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row, DropdownButton, Dropdown } from 'react-bootstrap';
 import StockProjectArt from '../../Static/StockProjectArt.jpg'
 import { useAuth } from '../../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,6 +16,11 @@ function Projects(props) {
         navigate('/dashboard')
     }
 
+    const handleDeleteProject = (projectId) =>{
+        props.deleteCurrentProject(projectId, auth.currentUser.uid);
+        console.log("Project Deleted");
+    }
+
     useEffect(() => {
         props.getProjectList(auth.currentUser.uid)
         console.log("Get Project List effect")
@@ -23,7 +28,7 @@ function Projects(props) {
 
     return ( 
         <Container className='d-flex justify-content-center align-items-center' style={{minHeight: '100vh', minWidth: '100vw'}}>
-            <Row md={2} xs={1} className='w-100 justify-content-center'>
+            <Row md={2} xs={1} className='w-100 justify-content-center overflow-auto'>
                 {props.projects.map((project) => (
                     <Col className='m-2'
                     style={{
@@ -81,7 +86,7 @@ function Projects(props) {
                                         }}>
                                             Open
                                         </Button>
-                                        <Button className='w-25 shadow'
+                                        <Button onClick={() => handleDeleteProject(project.name)} className='w-25 shadow'
                                         style={{
                                             position: 'absolute',
                                             bottom: '.5rem',

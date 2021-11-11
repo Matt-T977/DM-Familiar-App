@@ -3,6 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import projectStockImage from '../../Static/projectStockImage.jpg'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 
 function ProjectCreator() {
@@ -11,6 +12,7 @@ function ProjectCreator() {
     const nameRef = useRef()
     const summaryRef = useRef()
     const dateRef = useRef()
+    const navigate = useNavigate()
     const [project, setProject] = useState({
         name: '',
         summary: '',
@@ -38,16 +40,26 @@ function ProjectCreator() {
         }
     }
 
+    const handleChange = (e) => {
+        e.persist();
+
+        setProject((project) => ({
+            ...project,
+            [e.target.name]: e.target.value,
+        }));
+        
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setProject(currentState =>({
-            ...currentState,
-            name: nameRef.current.value,
-            summary:summaryRef.current.value,
-            creation_date: dateRef.current.value,
-        }))
-        postProject(project, auth.currentUser.uid);
+        try {
+            postProject(project, auth.currentUser.uid);
+        } catch {
+            console.log('No Project Posted')
+        }
+
+        navigate('/');
     }
 
     const postProject = async (project, userID) => {
@@ -98,15 +110,15 @@ function ProjectCreator() {
                     <Form onSubmit={handleSubmit}>
                         <Form.Group>
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type='text' ref={nameRef} placeholder='Project Name' required/>
+                            <Form.Control type='text' ref={nameRef} name='name' value={project.name} placeholder='Project Name' onChange={handleChange} required/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Summary</Form.Label>
-                            <Form.Control as='textarea' rows={5} type='text' ref={summaryRef} placeholder='Write your summary here!' required/>
+                            <Form.Control as='textarea' rows={5} type='text' ref={summaryRef} name='summary' value={project.summary} placeholder='Write your summary here!' onChange={handleChange} required/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Date</Form.Label>
-                            <Form.Control type='date' ref={dateRef} required/>
+                            <Form.Control type='date' ref={dateRef} name='creation_date' value={project.creation_date} onChange={handleChange} required/>
                         </Form.Group>
 
                         <Row>

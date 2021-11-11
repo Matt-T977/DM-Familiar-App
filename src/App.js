@@ -36,6 +36,13 @@ function App() {
     setCurrentProject({currentProject : response.data})};
     console.log(currentProject)
 
+  const deleteCurrentProject = async (ProjectID, userID) => {
+    await axios.delete('http://127.0.0.1:8000/' + userID + '/project/' + ProjectID)
+    .then(response => {
+      getProjectList(auth.currentUser.uid);
+    }).catch(err => {console.log(err);})
+  }
+
   return (
     <AuthProvider>
       <div className="App" style={{
@@ -49,7 +56,7 @@ function App() {
         <NavBar />
         <Container className='w-100' style={{minWidth: '100vw'}} >
           <Routes>
-            <Route path = '/' exact element = {<Projects getProjectList={getProjectList} projects={projectList.projects} getCurrentProject={getCurrentProject}/>} />
+            <Route path = '/' exact element = {<Projects getProjectList={getProjectList} projects={projectList.projects} getCurrentProject={getCurrentProject} deleteCurrentProject={deleteCurrentProject}/>} />
             <Route path = '/signup' element = {<SignUp /> } />
             <Route path = '/login' element = {<Login /> } />
             <Route path = '/dashboard' element = {<Dashboard currentProject={currentProject.currentProject}/>} />
