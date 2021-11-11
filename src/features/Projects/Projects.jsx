@@ -12,7 +12,7 @@ function Projects(props) {
 
     const handleOpenProject = (projectId) =>{
         props.getCurrentProject(projectId, auth.currentUser.uid)
-        console.log("Get Current")
+        console.log({projectId})
         navigate('/dashboard')
     }
 

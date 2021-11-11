@@ -10,18 +10,26 @@ import Chapter from './Chapter/Chapter';
 function Book(props) {
     const auth = useAuth()
     const [bookList, setBookList] = useState({books : []})
+    const [currentBook, setCurrentBook] = useState({book : {}})
+    const [chapterList, setChapterList] = useState({chapters : []})
 
     useEffect(() => {
         getBookList(props.currentProject.name, auth.currentUser.uid)
     }, []);
 
-    const handleClick = () => {
-        console.log("Card Click")
+    const handleClick = (ProjectID, BookID, book) => {
+        setCurrentBook({book: book})
+        console.log({currentBook})
+        getChapterList(ProjectID, auth.currentUser.uid, BookID)
     }
 
     const getBookList = async (ProjectID, userID) => {
-        let response = await axios.get('http://127.0.0.1:8000/' + userID + '/project/' + ProjectID + '/book/list');
-        setBookList({books : response.data})};
+        await axios.get('http://127.0.0.1:8000/' + userID + '/project/' + ProjectID + '/book/list')
+        .then(response => setBookList({books : response.data}))};
+
+    const getChapterList = async (projectID, userID, BookID) => {
+        await axios.get('http://127.0.0.1:8000/' + userID + '/project/' + projectID + '/book/' + BookID + '/chapter/list')
+        .then(response => setChapterList({chapters : response.data}))};
 
     return ( 
         <Container className='d-flex align-items-center justify-content-center ' style={{minHeight: '100vh'}}>
@@ -51,7 +59,7 @@ function Book(props) {
                     <Col>
                         <Row md={2}>
                             {bookList.books.map((book) =>
-                                <Card onClick={() => handleClick()} className='shadow m-1'
+                                <Card onClick={() => handleClick(props.currentProject.name, book.title, book)} className='shadow m-1'
                                 style={{
                                     backgroundColor: '#E0C097',
                                     borderColor: '#5C3D2E',
@@ -79,7 +87,7 @@ function Book(props) {
                         </Row>
                     </Col>
                     <Col>
-                        <Chapter />
+                        <Chapter currentProject={props.currentProject} chapters={chapterList.chapters} book={currentBook.book}/>
                     </Col>
                 </Row>
                 <AddBook currentProject={props.currentProject}/>
