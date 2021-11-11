@@ -41,7 +41,7 @@ function AddBook(props) {
     
     return (
         <>
-            <input className='btn btn-sm btn-outline-dark p-1' type="button" onClick={handleShow} value="Edit" />
+            <input className='btn btn-sm btn-outline-dark p-1' type="button" onClick={handleShow} value="New Book" />
 
 
             <Modal show={show} onHide={handleClose} className='modal-font text-center'
