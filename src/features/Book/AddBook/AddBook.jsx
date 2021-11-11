@@ -41,7 +41,14 @@ function AddBook(props) {
     
     return (
         <>
-            <input className='btn btn-sm btn-outline-dark p-1' type="button" onClick={handleShow} value="New Book" />
+            <input className='btn btn-sm btn-outline-dark p-1' type="button" onClick={handleShow} value="New Book" 
+            style={{
+                backgroundColor: '#B85C38',
+                borderColor: '#B85C38',
+                color: '#E0C097',
+                fontFamily: ('EB Garamond', 'serif'),
+                fontStyle: 'italic',
+            }}/>
 
 
             <Modal show={show} onHide={handleClose} className='modal-font text-center'
@@ -49,35 +56,53 @@ function AddBook(props) {
             aria-labelledby='contained-modal-title-vcenter'
             centered
             >
-                <Modal.Header closeButton id='modal-header-styling'>
+                <Modal.Header closeButton id='modal-header-styling'
+                    style={{
+                        backgroundColor: '#E0C097',
+                        borderColor: '#E0C097',
+                        color: '#B85C38',
+                        fontFamily: ('EB Garamond', 'serif'),
+                        fontStyle: 'italic',
+                    }}>
                     <Modal.Title id='contained-modal-title-vcenter'>
                         Add Book:
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body id='modal-body-styling'>
+                <Modal.Body id='modal-body-styling'
+                    style={{
+                        backgroundColor: '#E0C097',
+                        borderColor: '#E0C097',
+                        color: '#B85C38',
+                        fontFamily: ('EB Garamond', 'serif'),
+                        fontStyle: 'italic',
+                    }}>
                     <form onSubmit={handleSubmit} className='put'>
-                        <Row className='mb-3'>
-                            <Form.Group as={Col} controlID='title'>
+                        <Row >
+                            <Form.Group as={Col} controlId='title'>
                                     <Form.Label>Title:</Form.Label>
                                     <Form.Control className='form-control shadow m-1' name='title' type='text' placeholder='Title...' onChange={handleChange} />
                             </Form.Group>
-                            <Form.Group as={Col} controlID='category'>
+                            <Form.Group as={Col} controlId='category'>
                                     <Form.Label>Category:</Form.Label>
                                     <Form.Control className='form-control shadow m-1' name='category' type='text' placeholder='Category...' onChange={handleChange} />
                             </Form.Group>
-                            <Form.Group as={Row} controlID='summary'>
-                                    <Form.Label>Summary:</Form.Label>
+                            <Form.Group as={Row} controlId='summary'>
+                                    <Form.Label className='mt-1'>Summary:</Form.Label>
                                     <Form.Control as='textarea' rows={5} className='form-control shadow m-1' name='summary' type='text' placeholder='Summary...' onChange={handleChange} />
                             </Form.Group>
                         </Row>
-                        <Button variant="secondary" className='shadow mt-4 m-1' type="submit"  >
+                        <Button variant="secondary" className='shadow mt-4 m-1' type="submit"  
+                            style={{
+                                backgroundColor: '#B85C38',
+                                borderColor: '#B85C38',
+                                color: '#E0C097',
+                                fontFamily: ('EB Garamond', 'serif'),
+                                fontStyle: 'italic',
+                            }}>
                         Submit
                         </Button>
                     </form>
                 </Modal.Body>
-                <Modal.Footer id='modal-footer-styling'>
-
-                </Modal.Footer>
             </Modal>
         </>
     )
