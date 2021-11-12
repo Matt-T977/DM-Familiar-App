@@ -4,59 +4,59 @@ import { Col, Container, Form, Row, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 
-function NewCharacter(props) {
+function EditCharacter(props) {
     const auth = useAuth()
     const[character, setCharacter] = useState({
         is_player_character: false,
         player_name: '',
-        name: '',
-        character_class: '',
-        level: 0,
-        race: '',
-        background: '',
-        alignment: '',
+        name: props.currentCharacter.name,
+        character_class: props.currentCharacter.character_class,
+        level: props.currentCharacter.level,
+        race: props.currentCharacter.race,
+        background: props.currentCharacter.background,
+        alignment: props.currentCharacter.alignment,
 
-        strength: 0,
-        dexterity: 0,
-        constitution: 0,
-        intelligence: 0,
-        wisdom: 0,
-        charisma: 0,
+        strength: props.currentCharacter.strength,
+        dexterity: props.currentCharacter.dexterity,
+        constitution: props.currentCharacter.constitution,
+        intelligence: props.currentCharacter.intelligence,
+        wisdom: props.currentCharacter.wisdom,
+        charisma: props.currentCharacter.charisma,
 
-        health: 0,
-        temp_hp: 0,
-        armor_class: 0,
-        initiative: 0,
-        speed: 0,
-        proficiency_bonus: 0,
-        passive_perception: 0,
-        passive_investigation: 0,
-        death_success: 0,
-        death_fail: 0,
+        health: props.currentCharacter.health,
+        temp_hp: props.currentCharacter.temp_hp,
+        armor_class: props.currentCharacter.armor_class,
+        initiative: props.currentCharacter.initiative,
+        speed: props.currentCharacter.speed,
+        proficiency_bonus: props.currentCharacter.proficiency_bonus,
+        passive_perception: props.currentCharacter.passive_perception,
+        passive_investigation: props.currentCharacter.passive_investigation,
+        death_success: props.currentCharacter.death_success,
+        death_fail: props.currentCharacter.death_fail,
 
-        acrobatics: false,
-        animal_handling: false,
-        arcana: false,
-        athletics: false,
-        deception: false,
-        history: false,
-        insight: false,
-        intimidation: false,
-        investigation: false,
-        medicine: false,
-        nature: false,
-        perception: false,
-        performance: false,
-        persuasion: false,
-        religion: false,
-        sleight_of_hand: false,
-        stealth: false,
-        survival: false,
+        acrobatics: props.currentCharacter.acrobatics,
+        animal_handling: props.currentCharacter.animal_handling,
+        arcana: props.currentCharacter.arcana,
+        athletics: props.currentCharacter.athletics,
+        deception: props.currentCharacter.deception,
+        history: props.currentCharacter.history,
+        insight: props.currentCharacter.insight,
+        intimidation: props.currentCharacter.intimidation,
+        investigation: props.currentCharacter.investigation,
+        medicine: props.currentCharacter.medicine,
+        nature: props.currentCharacter.nature,
+        perception: props.currentCharacter.perception,
+        performance: props.currentCharacter.performance,
+        persuasion: props.currentCharacter.persuasion,
+        religion: props.currentCharacter.religion,
+        sleight_of_hand: props.currentCharacter.sleight_of_hand,
+        stealth: props.currentCharacter.stealth,
+        survival: props.currentCharacter.survival,
 
-        traits: '',
-        ideals: '',
-        bonds: '',
-        flaws: '',
+        traits: props.currentCharacter.traits,
+        ideals: props.currentCharacter.ideals,
+        bonds: props.currentCharacter.bonds,
+        flaws: props.currentCharacter.flaws,
 
     })
 
@@ -415,11 +415,11 @@ function NewCharacter(props) {
                                 fontFamily: ('EB Garamond', 'serif'),
                                 fontStyle: 'italic',
                             }}>
-                            Create Character
+                            Update Character
                     </Button>
                 </Form>
         </Container>
      );
 }
 
-export default NewCharacter;
+export default EditCharacter;
