@@ -130,25 +130,25 @@ function ProjectCreator(props) {
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>Documents?</Form.Label>
-                                    <Form.Check type='checkbox' name = "include_text_doc" value ={project.include_text_doc} onChange={handleCheck}/>
+                                    <Form.Check type='checkbox' name = "include_text_doc" checked={project.include_text_doc} onChange={handleCheck}/>
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>References?</Form.Label>
-                                    <Form.Check type='checkbox' name = "include_static_assets" value ={project.include_static_assets} onChange={handleCheck}/>
+                                    <Form.Check type='checkbox' name = "include_static_assets" checked={project.include_static_assets} onChange={handleCheck}/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group>
                                     <Form.Label>Videos?</Form.Label>
-                                    <Form.Check type='checkbox' name = "include_video" value ={project.include_video} onChange={handleCheck}/>
+                                    <Form.Check type='checkbox' name = "include_video" checked={project.include_video} onChange={handleCheck}/>
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>Audio?</Form.Label>
-                                    <Form.Check type='checkbox' name = "include_audio" value ={project.include_audio} onChange={handleCheck}/>
+                                    <Form.Check type='checkbox' name = "include_audio" checked={project.include_audio} onChange={handleCheck}/>
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>Locations?</Form.Label>
-                                    <Form.Check type='checkbox' name = "include_location" value ={project.include_location} onChange={handleCheck}/>
+                                    <Form.Check type='checkbox' name = "include_location" checked={project.include_location} onChange={handleCheck}/>
                                 </Form.Group>
                             </Col>
                         </Row>

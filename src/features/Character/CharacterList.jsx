@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import NewCharacter from './NewCharacter/NewCharacter';
 
 
-function CharacterList() {
+function CharacterList(props) {
     return ( 
         <Container className='d-flex align-items-center justify-content-center ' style={{minHeight: '100vh'}}>
             <Row className='w-100 overflow-auto' 
@@ -20,7 +20,7 @@ function CharacterList() {
                     characters go here
                 </Col>
                 <Col lg={9}>
-                    <NewCharacter />
+                    <NewCharacter currentProject={props.currentProject}/>
                 </Col>
             </Row>
         </Container>
