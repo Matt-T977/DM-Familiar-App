@@ -3,12 +3,13 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import StockProjectArt from '../../Static/StockProjectArt.jpg'
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 
 
 function Projects(props) {
     const auth = useAuth();
     const navigate = useNavigate()
+
 
     const handleOpenProject = (projectId) =>{
         props.getCurrentProject(projectId, auth.currentUser.uid)
@@ -18,9 +19,16 @@ function Projects(props) {
     }
 
     const handleDeleteProject = (projectId) =>{
-        props.deleteCurrentProject(projectId, auth.currentUser.uid);
+        deleteCurrentProject(projectId, auth.currentUser.uid);
         console.log("Project Deleted");
     }
+
+    const deleteCurrentProject = async (ProjectID, userID) => {
+        await axios.delete('http://127.0.0.1:8000/' + userID + '/project/' + ProjectID)
+        .then(response => {
+          props.getProjectList(auth.currentUser.uid);
+        }).catch(err => {console.log(err);})
+      }
 
     useEffect(() => {
         props.getProjectList(auth.currentUser.uid)

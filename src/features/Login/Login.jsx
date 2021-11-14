@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const { login } = useAuth()
+    const { login, signInWithGoogle } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -47,6 +47,7 @@ function Login() {
                                     <Form.Control type = 'password' ref = {passwordRef} required />
                                 </Form.Group>
                                 <Button disabled={loading} className='w-100 mt-4' type='submit'>Log In</Button>
+                                <Button disabled={loading} className='w-100 mt-4' onClick={() => signInWithGoogle().then(navigate('/'))}>Google Account?</Button>
                             </Form>
                         </Card.Body>
                     </Card>
