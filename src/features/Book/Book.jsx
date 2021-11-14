@@ -32,10 +32,9 @@ function Book(props) {
         .then(response => setChapterList({chapters : response.data}))};
 
     return ( 
-        <Container className='d-flex align-items-center justify-content-center ' style={{minHeight: '100vh'}}>
+        <Container className='d-flex align-items-start justify-content-center mt-3' style={{minHeight: '100vh'}}>
             <Row className='w-100 overflow-auto' 
             style = {{
-                maxWidth: '50vw',
                 minHeight: '30vh',
                 backgroundColor: '#2D2424',
                 borderStyle: 'solid',
@@ -43,9 +42,8 @@ function Book(props) {
                 borderWidth: '5px',
                 borderRadius: '1rem',
                 }}>
-                <Row className='justify-content-center text-center w-100 overflow-hidden'
+                <Row className='text-center w-100 overflow-hidden'
                 style ={{
-                    maxWidth: '100vw',
                     maxHeight: '2rem',
                     backgroundColor: '#E0C097',
                     borderColor: '#5C3D2E',

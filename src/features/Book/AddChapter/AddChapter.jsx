@@ -15,6 +15,8 @@ function AddChapter(props) {
         title: '',
         summary: '',
         body: '',
+        file: null,
+        upload: false,
     })
     const handleChange = (event) => {
         event.persist();
@@ -25,6 +27,7 @@ function AddChapter(props) {
     } 
     const handleSubmit = (event) => {
         event.preventDefault();
+        chapter.file ? chapter.upload = true : chapter.upload = false
         console.log(chapter)
         console.log(props.currentProject)
         postChapter(chapter, props.currentProject.name, auth.currentUser.uid, props.book.title)
@@ -83,13 +86,17 @@ function AddChapter(props) {
                                     <Form.Label>Title:</Form.Label>
                                     <Form.Control className='form-control shadow m-1' name='title' type='text' placeholder='Title...' onChange={handleChange} />
                             </Form.Group>
-                            <Form.Group as={Col} controlId='category'>
+                            <Form.Group as={Col} controlId='summary'>
                                     <Form.Label>Summary:</Form.Label>
                                     <Form.Control as='textarea' rows={5} className='form-control shadow m-1' name='summary' type='text' placeholder='Summary...' onChange={handleChange} />
                             </Form.Group>
-                            <Form.Group as={Row} controlId='summary'>
+                            <Form.Group as={Row} controlId='body'>
                                     <Form.Label className='mt-1'>Body:</Form.Label>
                                     <Form.Control as='textarea' rows={10} className='form-control shadow m-1' name='body' type='text' placeholder='Body...' onChange={handleChange} />
+                            </Form.Group>
+                            <Form.Group as={Row} controlId='file'>
+                                    <Form.Label className='mt-1'>Upload Document:</Form.Label>
+                                    <Form.Control className='form-control shadow m-1' name='file' type='file' onChange={handleChange} />
                             </Form.Group>
                         </Row>
                         <Button variant="secondary" className='shadow mt-4 m-1' type="submit"  

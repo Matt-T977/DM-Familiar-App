@@ -11,9 +11,8 @@ import CharacterList from '../Character/CharacterList';
 
 function Dashboard(props) {
 
-    const { currentUser } = useAuth()
+    const auth = useAuth()
     const [error, setError] = useState("")
-
 
 
     return ( 
@@ -126,8 +125,14 @@ function Dashboard(props) {
                     maxWidth: '100vw',
                     maxHeight: '100vh'
                 }}>
-                    {/* <Book currentProject={props.currentProject}/> */}
-                    <CharacterList  currentProject={props.currentProject}/>
+                    <Row>
+                        <Col>
+                            <Book currentProject={props.currentProject}/>
+                        </Col>
+                        <Col>
+                            <CharacterList  currentProject={props.currentProject} getCharacterList={props.getCharacterList} getCurrentCharacter={props.getCurrentCharacter} characters={props.characters} currentCharacter={props.currentCharacter}/>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
         </Container>

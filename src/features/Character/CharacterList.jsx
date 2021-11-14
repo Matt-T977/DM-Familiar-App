@@ -8,29 +8,16 @@ import EditCharacter from './EditCharacter/EditCharacter';
 
 function CharacterList(props) {
     const auth = useAuth()
-    const [characterList, setCharacterList] = useState({characters : []})
-    const [currentCharacter, setCurrentCharacter] = useState({character:{}})
+    const [isCharacterSelected, setIsCharacterSelected] = useState(false)
 
-    const getCharacterList = async (userId, projectId) => {
-        await axios.get('http://127.0.0.1:8000/' + userId + '/project/' + projectId + '/character/list')
-        .then(res => {
-            setCharacterList({characters: res.data})
-        }).catch(err => {console.log(err);})
+    const toggle = () => setIsCharacterSelected(state => !state)
+
+    const handleClick = (userId, ProjectId, CharacterId) => {
+        props.getCurrentCharacter(userId, ProjectId, CharacterId)
+        toggle()
+        console.log(props.currentCharacter.name)
+        console.log(isCharacterSelected)
     }
-
-    const getCurrentCharacter = async (userId, projectId, characterId) => {
-        await axios.get('http://127.0.0.1:8000/' + userId + '/project/' + projectId + '/character/' + characterId)
-        .then(res => {
-            setCurrentCharacter({character:res.data})
-        }).catch(err => {console.log(err);})
-    }
-
-    useEffect(()=> {
-        getCharacterList(auth.currentUser.uid, props.currentProject.name)
-        console.log("Characters loaded")
-        console.log({characterList})
-    },[]);
-
 
 
     return ( 
@@ -47,8 +34,8 @@ function CharacterList(props) {
                     }}>
                 <Col lg={3} className='mb-auto mt-3' >
                     <ListGroup >
-                        {characterList.characters.map((character) => (
-                            <ListGroup.Item action variant='warning' onClick={() => getCurrentCharacter(auth.currentUser.uid, props.currentProject.name, character.name)}
+                        {props.characters.map((character) => (
+                            <ListGroup.Item action variant='warning' onClick={() => handleClick(auth.currentUser.uid, props.currentProject.name, character.name)}
                             style={{
                                 fontSize: '1.25rem',
                                 fontWeight: '600',
@@ -63,7 +50,12 @@ function CharacterList(props) {
                     </ListGroup>
                 </Col>
                 <Col lg={9}>
-                    <EditCharacter currentProject={props.currentProject} currentCharacter={currentCharacter.character}/>
+                    {!isCharacterSelected &&
+                        <NewCharacter currentProject={props.currentProject} getCharacterList={props.getCharacterList}/>
+                    }
+                    {isCharacterSelected &&
+                        <EditCharacter currentProject={props.currentProject} currentCharacter={props.currentCharacter} getCharacterList={props.getCharacterList}/>
+                    }
                 </Col>
             </Row>
         </Container>

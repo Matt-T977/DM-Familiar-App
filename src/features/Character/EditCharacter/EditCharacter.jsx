@@ -98,6 +98,7 @@ function EditCharacter(props) {
     const postCharacter = async (character, projectId, userId) => {
         await axios.post('http://127.0.0.1:8000/' + userId + '/project/' + projectId + '/character/list', character)
         .then(res => {
+            props.getCharacterList(userId, projectId)
             console.log(res)
         }).catch(err => {
             console.log("Error in postCharacter: " + err);

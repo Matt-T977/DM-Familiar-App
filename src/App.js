@@ -11,6 +11,7 @@ import Login from './features/Login/Login';
 import NavBar from './features/NavBar/NavBar';
 import ProjectCreator from './features/ProjectCreator/ProjectCreator';
 import Projects from './features/Projects/Projects';
+import CharacterList from './features/Character/CharacterList';
 
 
 // var firebase = require('firebase');
@@ -24,6 +25,8 @@ function App() {
   const auth = useAuth()
   const [projectList, setProjectList] = useState({projects : []})
   const [currentProject, setCurrentProject] = useState({currentProject : {}})
+  const [characterList, setCharacterList] = useState({characters : []})
+  const [currentCharacter, setCurrentCharacter] = useState({character:{}})
 
 
   const getProjectList = async (userID) => {
@@ -43,6 +46,22 @@ function App() {
     }).catch(err => {console.log(err);})
   }
 
+  const getCharacterList = async (userId, projectId) => {
+    await axios.get('http://127.0.0.1:8000/' + userId + '/project/' + projectId + '/character/list')
+    .then(res => {
+        console.log(res)
+        setCharacterList({characters : res.data})
+    }).catch(err => {console.log(err);})
+  }
+
+  const getCurrentCharacter = async (userId, projectId, characterId) => {
+    await axios.get('http://127.0.0.1:8000/' + userId + '/project/' + projectId + '/character/' + characterId)
+    .then(res => {
+        setCurrentCharacter({character:res.data})
+    }).catch(err => {console.log(err);})
+  }
+
+
   return (
     <AuthProvider>
       <div className="App" style={{
@@ -56,10 +75,11 @@ function App() {
         <NavBar />
         <Container className='w-100' style={{minWidth: '100vw'}} >
           <Routes>
-            <Route path = '/' exact element = {<Projects getProjectList={getProjectList} projects={projectList.projects} getCurrentProject={getCurrentProject} deleteCurrentProject={deleteCurrentProject}/>} />
+            <Route path = '/' exact element = {<Projects getProjectList={getProjectList} projects={projectList.projects} getCurrentProject={getCurrentProject} deleteCurrentProject={deleteCurrentProject} getCharacterList={getCharacterList}/>} />
             <Route path = '/signup' element = {<SignUp /> } />
             <Route path = '/login' element = {<Login /> } />
-            <Route path = '/dashboard' element = {<Dashboard currentProject={currentProject.currentProject}/>} />
+            <Route path = '/dashboard' element = {<Dashboard currentProject={currentProject.currentProject} 
+                                                  getCharacterList={getCharacterList} getCurrentCharacter={getCurrentCharacter} characters={characterList.characters} currentCharacter={currentCharacter.character}/>} />
             <Route path = '/create-project' element = {<ProjectCreator getCurrentProject={getCurrentProject}/>} />
             {/* <Redirect to = '/not-found' /> */}
           </Routes>

@@ -12,6 +12,7 @@ function Projects(props) {
 
     const handleOpenProject = (projectId) =>{
         props.getCurrentProject(projectId, auth.currentUser.uid)
+        props.getCharacterList(auth.currentUser.uid, projectId)
         console.log({projectId})
         navigate('/dashboard')
     }
