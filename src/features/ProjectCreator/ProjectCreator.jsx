@@ -75,10 +75,10 @@ function ProjectCreator(props) {
 
     return ( 
         <Container className='d-flex align-items-center justify-content-center' style={{minHeight: '100vh'}}>
-            <Row className='w-100 align-items-center' 
+            <Row className='w-100 align-items-center pt-5' 
             style = {{
                 maxWidth: '90vw',
-                minHeight: '80vh',
+                minHeight: '75vh',
                 backgroundColor: '#E0C097',
                 borderStyle: 'solid',
                 borderColor: '#5C3D2E',
@@ -106,53 +106,60 @@ function ProjectCreator(props) {
                     </Container>
                 </Col>
                 <Col className='m-3'>
-                    <h2 className='text-center mb-3'>Create your Project!</h2>
-                    <Form onSubmit={handleSubmit}>
+                    <h2 className='text-center mb-3'
+                    style={{
+                        color: '#B85C38',
+                        textShadow: '2.5px 2.5px 6px'
+                    }}>Create your Project!</h2>
+                    <Form onSubmit={handleSubmit}
+                    style={{
+                        color: '#B85C38',
+                    }}>
                         <Form.Group>
-                            <Form.Label>Name</Form.Label>
+                            <Form.Label className='h5'>Name</Form.Label>
                             <Form.Control type='text' ref={nameRef} name='name' value={project.name} placeholder='Project Name' onChange={handleChange} required/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Summary</Form.Label>
+                            <Form.Label className='h5 mt-2'>Summary</Form.Label>
                             <Form.Control as='textarea' rows={5} type='text' ref={summaryRef} name='summary' value={project.summary} placeholder='Write your summary here!' onChange={handleChange} required/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Date</Form.Label>
+                            <Form.Label className='h5 mt-2'>Date</Form.Label>
                             <Form.Control type='date' ref={dateRef} name='creation_date' value={project.creation_date} onChange={handleChange} required/>
                         </Form.Group>
 
-                        <Row>
+                        <Row className='text-center'>
                             <Col>
                                 <Form.Group>
-                                    <Form.Label>Characters?</Form.Label>
+                                    <Form.Label className='h5 mt-2'>Characters?</Form.Label>
                                     <Form.Check type='checkbox' name = "include_char_sheet"  checked={project.include_char_sheet} onChange={handleCheck}/>
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Label>Documents?</Form.Label>
+                                    <Form.Label className='h5 mt-2'>Documents?</Form.Label>
                                     <Form.Check type='checkbox' name = "include_text_doc" checked={project.include_text_doc} onChange={handleCheck}/>
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Label>References?</Form.Label>
+                                    <Form.Label className='h5 mt-2'>References?</Form.Label>
                                     <Form.Check type='checkbox' name = "include_static_assets" checked={project.include_static_assets} onChange={handleCheck}/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group>
-                                    <Form.Label>Videos?</Form.Label>
+                                    <Form.Label className='h5 mt-2'>Videos?</Form.Label>
                                     <Form.Check type='checkbox' name = "include_video" checked={project.include_video} onChange={handleCheck}/>
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Label>Audio?</Form.Label>
+                                    <Form.Label className='h5 mt-2'>Audio?</Form.Label>
                                     <Form.Check type='checkbox' name = "include_audio" checked={project.include_audio} onChange={handleCheck}/>
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Label>Locations?</Form.Label>
+                                    <Form.Label className='h5 mt-2'>Locations?</Form.Label>
                                     <Form.Check type='checkbox' name = "include_location" checked={project.include_location} onChange={handleCheck}/>
                                 </Form.Group>
                             </Col>
                         </Row>
                         
-                        <Button className='d-flex w-50 mx-auto justify-content-center mt-3' type='submit' 
+                        <Button className='d-flex w-50 mx-auto justify-content-center mt-3 shadow' type='submit' 
                             style={{
                                 backgroundColor: '#B85C38',
                                 borderColor: '#B85C38',

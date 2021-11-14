@@ -18,29 +18,53 @@ function AddChapter(props) {
         file: null,
         upload: false,
     })
+    
     const handleChange = (event) => {
         event.persist();
+        console.log(event.target.type)
         setChapter((chapter) => ({
             ...chapter,
             [event.target.name]: event.target.value,
         }));
-    } 
+    }
+    
+    const handleUpload = (event) => {
+        event.persist();
+        console.log(event.target.type)
+        setChapter((chapter) => ({
+            ...chapter,
+            [event.target.name]: event.target.files[0]
+        }))
+    }
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         chapter.file ? chapter.upload = true : chapter.upload = false
         console.log(chapter)
         console.log(props.currentProject)
+        // chapter.upload && postUploadChapter(chapter, props.currentProject.name, auth.currentUser.uid, props.book.title)
         postChapter(chapter, props.currentProject.name, auth.currentUser.uid, props.book.title)
     }
 
     const postChapter = async (chapter, projectID, userID, bookID) => {
-        await axios.post('http://127.0.0.1:8000/' + userID + '/project/' + projectID + '/book/' + bookID + '/chapter/list', chapter)
+        var formData = new FormData()
+
+        formData.append('title', chapter.title)
+        formData.append('summary', chapter.summary)
+        formData.append('body', chapter.body)
+        chapter.upload && formData.append('file', chapter.file)
+        formData.append('upload', chapter.upload)
+
+        console.log(formData)
+        await axios.post('http://127.0.0.1:8000/' + userID + '/project/' + projectID + '/book/' + bookID + '/chapter/list', formData, {headers: {'Content-Type' : 'multipart/form-data'}})
         .then( res => {
             console.log(res)
         }).catch(err => {
             console.log("Error in postChapter: " + err);
         });
     }
+
 
     
     return (
@@ -96,7 +120,7 @@ function AddChapter(props) {
                             </Form.Group>
                             <Form.Group as={Row} controlId='file'>
                                     <Form.Label className='mt-1'>Upload Document:</Form.Label>
-                                    <Form.Control className='form-control shadow m-1' name='file' type='file' onChange={handleChange} />
+                                    <Form.Control className='form-control shadow m-1' name='file' type='file' onChange={handleUpload} />
                             </Form.Group>
                         </Row>
                         <Button variant="secondary" className='shadow mt-4 m-1' type="submit"  

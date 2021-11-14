@@ -1,35 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import ScrollWall from '../../Static/ScrollWall.jpg'
-import axios from 'axios';
 import AddBook from './AddBook/AddBook';
 import Chapter from './Chapter/Chapter';
 
 
 function Book(props) {
     const auth = useAuth()
-    const [bookList, setBookList] = useState({books : []})
     const [currentBook, setCurrentBook] = useState({book : {}})
-    const [chapterList, setChapterList] = useState({chapters : []})
 
-    useEffect(() => {
-        getBookList(props.currentProject.name, auth.currentUser.uid)
-    }, []);
 
     const handleClick = (ProjectID, BookID, book) => {
         setCurrentBook({book: book})
         console.log({currentBook})
-        getChapterList(ProjectID, auth.currentUser.uid, BookID)
+        props.getChapterList(ProjectID, auth.currentUser.uid, BookID)
     }
-
-    const getBookList = async (ProjectID, userID) => {
-        await axios.get('http://127.0.0.1:8000/' + userID + '/project/' + ProjectID + '/book/list')
-        .then(response => setBookList({books : response.data}))};
-
-    const getChapterList = async (projectID, userID, BookID) => {
-        await axios.get('http://127.0.0.1:8000/' + userID + '/project/' + projectID + '/book/' + BookID + '/chapter/list')
-        .then(response => setChapterList({chapters : response.data}))};
 
     return ( 
         <Container className='d-flex align-items-start justify-content-center mt-3' style={{minHeight: '100vh'}}>
@@ -56,7 +42,7 @@ function Book(props) {
                 <Row>
                     <Col>
                         <Row md={2}>
-                            {bookList.books.map((book) =>
+                            {props.books.map((book) =>
                                 <Card onClick={() => handleClick(props.currentProject.name, book.title, book)} className='shadow m-1'
                                 style={{
                                     backgroundColor: '#E0C097',
@@ -85,7 +71,7 @@ function Book(props) {
                         </Row>
                     </Col>
                     <Col>
-                        <Chapter currentProject={props.currentProject} chapters={chapterList.chapters} book={currentBook.book}/>
+                        <Chapter currentProject={props.currentProject} chapters={props.chapters} book={currentBook.book}/>
                     </Col>
                 </Row>
                 <AddBook currentProject={props.currentProject}/>

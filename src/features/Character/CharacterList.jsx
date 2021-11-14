@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Col, Container, Row, ListGroup } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import NewCharacter from './NewCharacter/NewCharacter';

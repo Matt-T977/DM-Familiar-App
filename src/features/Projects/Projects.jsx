@@ -11,10 +11,11 @@ function Projects(props) {
     const navigate = useNavigate()
 
 
-    const handleOpenProject = (projectId) =>{
-        props.getCurrentProject(projectId, auth.currentUser.uid)
-        props.getCharacterList(auth.currentUser.uid, projectId)
-        console.log({projectId})
+    const handleOpenProject = (project) =>{
+        props.getCurrentProject(project.name, auth.currentUser.uid);
+        project.include_char_sheet && props.getCharacterList(auth.currentUser.uid, project.name);
+        project.include_text_doc && props.getBookList(project.name, auth.currentUser.uid);
+        console.log(project.name)
         navigate('/dashboard')
     }
 
@@ -31,7 +32,11 @@ function Projects(props) {
       }
 
     useEffect(() => {
-        props.getProjectList(auth.currentUser.uid)
+        try {
+            props.getProjectList(auth.currentUser.uid)
+        } catch {
+            console.log("Unable to get Project List")
+        } 
         console.log("Get Project List effect")
     }, []);
 
@@ -81,7 +86,7 @@ function Projects(props) {
                                         }}>
                                             Edit
                                         </Button>
-                                        <Button onClick={() => handleOpenProject(project.name)} className='w-25 shadow btn'
+                                        <Button onClick={() => handleOpenProject(project)} className='w-25 shadow btn'
                                         style={{
                                             position: 'absolute',
                                             bottom: '.5rem',

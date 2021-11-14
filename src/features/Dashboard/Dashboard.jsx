@@ -12,8 +12,16 @@ import CharacterList from '../Character/CharacterList';
 function Dashboard(props) {
 
     const auth = useAuth()
+    const [characterToggle, setCharacterToggle] = useState(true)
+    const [documentToggle, setDocumentToggle] = useState(true)
+    const [referenceToggle, setReferenceToggle] = useState(true)
+    const [locationToggle, setLocationToggle] = useState(true)
     const [error, setError] = useState("")
 
+    const showCharacter = () => setCharacterToggle(state => !state)
+    const showDocument = () => setDocumentToggle(state => !state)
+    const showReference = () => setReferenceToggle(state => !state)
+    const showLocation = () => setLocationToggle(state => !state)
 
     return ( 
         <Container className='d-flex align-items-center justify-content-center' style={{minHeight: '100vh'}}>
@@ -35,7 +43,7 @@ function Dashboard(props) {
                                 height: '15vh',
                                 objectFit: 'cover',
                             }}/>
-                            <Button className='w-100 text-start'
+                            <Button className='w-100 text-start' onClick={showCharacter}
                                 style={{
                                     backgroundColor: '#B85C38',
                                     color: '#E0C097',
@@ -57,7 +65,7 @@ function Dashboard(props) {
                                 height: '15vh',
                                 objectFit: 'cover',
                             }}/>
-                            <Button className='w-100 text-start'
+                            <Button className='w-100 text-start' onClick={showDocument}
                                 style={{
                                     backgroundColor: '#B85C38',
                                     color: '#E0C097',
@@ -79,7 +87,7 @@ function Dashboard(props) {
                                 height: '15vh',
                                 objectFit: 'cover',
                             }}/>
-                            <Button className='w-100 text-start'
+                            <Button className='w-100 text-start' onClick={showReference}
                                 style={{
                                     backgroundColor: '#B85C38',
                                     color: '#E0C097',
@@ -101,7 +109,7 @@ function Dashboard(props) {
                                 height: '15vh',
                                 objectFit: 'cover',
                             }}/>
-                            <Button className='w-100 text-start'
+                            <Button className='w-100 text-start' onClick={showLocation}
                                 style={{
                                     backgroundColor: '#B85C38',
                                     color: '#E0C097',
@@ -115,9 +123,14 @@ function Dashboard(props) {
                             </Button>
                         </Container>
                     }
-                    {props.currentProject.name}
+                    <div className='h2' 
+                    style={{
+                        position: 'relative',
+                        bottom: '-1rem',
+                        color: '#B85C38',
+                        textShadow: '2.5px 2.5px 6px'
+                    }}>{props.currentProject.name}</div>
                 </Col>
-
 
 
                 <Col md={10}
@@ -126,12 +139,24 @@ function Dashboard(props) {
                     maxHeight: '100vh'
                 }}>
                     <Row>
-                        <Col>
-                            <Book currentProject={props.currentProject}/>
-                        </Col>
-                        <Col>
-                            <CharacterList  currentProject={props.currentProject} getCharacterList={props.getCharacterList} getCurrentCharacter={props.getCurrentCharacter} characters={props.characters} currentCharacter={props.currentCharacter}/>
-                        </Col>
+                        {documentToggle &&
+                            <Col>
+                                <Book 
+                                    currentProject={props.currentProject} 
+                                    getBookList={props.getBookList} 
+                                    getChapterList={props.getChapterList} 
+                                    books={props.books} chapters={props.chapters}/>
+                            </Col>
+                        }
+                        {characterToggle &&
+                            <Col>
+                                <CharacterList  
+                                    currentProject={props.currentProject} 
+                                    getCharacterList={props.getCharacterList} 
+                                    getCurrentCharacter={props.getCurrentCharacter} 
+                                    characters={props.characters} currentCharacter={props.currentCharacter}/>
+                            </Col>
+                        }
                     </Row>
                 </Col>
             </Row>
