@@ -83,8 +83,11 @@ function App() {
                                   getCharacterList={getCharacterList}
                                   getBookList={getBookList}/> 
                               </RequireAuth>} />
-            <Route path = '/signup' element = {<SignUp /> } />
-            <Route path = '/login' element = {<Login /> } />
+            <Route path = '/create-project' 
+            element = { <RequireAuth>
+                          <ProjectCreator 
+                            getCurrentProject={getCurrentProject}/>
+                        </RequireAuth>} />
             <Route path = '/dashboard' 
               element = { <RequireAuth>
                             <Dashboard 
@@ -98,12 +101,9 @@ function App() {
                               books={bookList.books}
                               chapters={chapterList.chapters}/>
                           </RequireAuth>} />
+            <Route path = '/signup' element = {<SignUp /> } />
+            <Route path = '/login' element = {<Login /> } />
             
-              <Route path = '/create-project' 
-              element = { <RequireAuth>
-                            <ProjectCreator 
-                              getCurrentProject={getCurrentProject}/>
-                          </RequireAuth>} />
             
             {/* <Redirect to = '/not-found' /> */}
           </Routes>
