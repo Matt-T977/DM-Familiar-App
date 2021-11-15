@@ -147,7 +147,7 @@ function NewCharacter(props) {
                     <Row>
                         <Col lg={6} >
                             <Row className='justify-content-center mb-2'>
-                                <Col lg={5} className='text-end px-4 p-2 shadow mx-2 mb-auto'
+                                <Col lg={5} className='px-4 p-2 shadow mx-2 mb-auto'
                                 style={{
                                     borderStyle: 'solid',
                                     borderColor: '#5C3D2E',

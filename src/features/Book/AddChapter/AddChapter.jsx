@@ -59,10 +59,16 @@ function AddChapter(props) {
         console.log(formData)
         await axios.post('http://127.0.0.1:8000/' + userID + '/project/' + projectID + '/book/' + bookID + '/chapter/list', formData, {headers: {'Content-Type' : 'multipart/form-data'}})
         .then( res => {
+            props.getChapterList(projectID, auth.currentUser.uid, bookID)
             console.log(res)
         }).catch(err => {
             console.log("Error in postChapter: " + err);
-        });
+        }).finally(
+            setChapter((chapter) => ({
+                ...chapter,
+                file : null
+            }))
+        )
     }
 
 
@@ -123,7 +129,7 @@ function AddChapter(props) {
                                     <Form.Control className='form-control shadow m-1' name='file' type='file' onChange={handleUpload} />
                             </Form.Group>
                         </Row>
-                        <Button variant="secondary" className='shadow mt-4 m-1' type="submit"  
+                        <Button variant="secondary" className='shadow mt-4 m-1' type="submit" onClick={handleClose}
                             style={{
                                 backgroundColor: '#B85C38',
                                 borderColor: '#B85C38',

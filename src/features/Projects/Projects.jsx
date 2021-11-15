@@ -73,7 +73,7 @@ function Projects(props) {
                                     <Card.Body>
                                         <Card.Title className='mt-2' style={{fontSize: '2rem', textShadow: '2.5px 2.5px 6px'}}>{project.name}</Card.Title>
                                         <Card.Text className='my-5' style={{fontSize: '1.25rem', textShadow: '2px 2px 4px'}}>{project.summary}</Card.Text>
-                                        <Button className='w-25 shadow'
+                                        <Button className='w-25 shadow' disabled
                                         style={{
                                             position: 'absolute',
                                             bottom: '.5rem',

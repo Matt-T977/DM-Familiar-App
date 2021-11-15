@@ -146,11 +146,11 @@ function ProjectCreator(props) {
                             <Col>
                                 <Form.Group>
                                     <Form.Label className='h5 mt-2'>Videos?</Form.Label>
-                                    <Form.Check type='checkbox' name = "include_video" checked={project.include_video} onChange={handleCheck}/>
+                                    <Form.Check type='checkbox' name = "include_video" checked={project.include_video} disabled onChange={handleCheck}/>
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label className='h5 mt-2'>Audio?</Form.Label>
-                                    <Form.Check type='checkbox' name = "include_audio" checked={project.include_audio} onChange={handleCheck}/>
+                                    <Form.Check type='checkbox' name = "include_audio" checked={project.include_audio} disabled onChange={handleCheck}/>
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label className='h5 mt-2'>Locations?</Form.Label>

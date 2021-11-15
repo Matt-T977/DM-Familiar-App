@@ -4,15 +4,15 @@ import AddChapter from '../AddChapter/AddChapter';
 
 
 function Chapter(props) {
-
+    let keyInterval = 0
 
     return ( 
         <Container>
             <Row >
-                <Accordion className='mt-1 mb-2' 
+                <Accordion className='mt-1 mb-2'
                 >
                     {props.chapters.map(chapter =>
-                        <Accordion.Item 
+                        <Accordion.Item eventKey={keyInterval++}
                         style={{
                             backgroundColor: '#E0C097',
                             color: '#B85C38',
@@ -20,8 +20,8 @@ function Chapter(props) {
                             fontStyle: 'italic',
                         }}>
                             <Accordion.Header >
-                                <Col lg={4}>
-                                    {chapter.title} |
+                                <Col lg={4} md={3} sm={2}>
+                                    {chapter.title}
                                 </Col>
                                 <Col>
                                     {chapter.summary}
@@ -35,7 +35,7 @@ function Chapter(props) {
                 </Accordion>
             </Row>
             <Row>
-                <AddChapter book={props.book} currentProject={props.currentProject}/>
+                <AddChapter book={props.book} currentProject={props.currentProject} getChapterList={props.getChapterList}/>
             </Row>
         </Container>
      );

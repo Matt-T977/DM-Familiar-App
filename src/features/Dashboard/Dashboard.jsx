@@ -125,22 +125,16 @@ function Dashboard(props) {
                     }
                     <div className='h2' 
                     style={{
-                        position: 'relative',
-                        bottom: '-1rem',
                         color: '#B85C38',
                         textShadow: '2.5px 2.5px 6px'
                     }}>{props.currentProject.name}</div>
                 </Col>
 
 
-                <Col md={10}
-                style={{
-                    maxWidth: '100vw',
-                    maxHeight: '100vh'
-                }}>
+                <Col md={10}>
                     <Row>
                         {documentToggle &&
-                            <Col>
+                            <Col md={5}>
                                 <Book 
                                     currentProject={props.currentProject} 
                                     getBookList={props.getBookList} 

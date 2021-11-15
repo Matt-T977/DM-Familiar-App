@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import ScrollWall from '../../Static/ScrollWall.jpg'
 import AddBook from './AddBook/AddBook';
 import Chapter from './Chapter/Chapter';
+import './Book.css'
 
 
 function Book(props) {
@@ -18,8 +19,8 @@ function Book(props) {
     }
 
     return ( 
-        <Container className='d-flex align-items-start justify-content-center mt-3' style={{minHeight: '100vh'}}>
-            <Row className='w-100 overflow-auto' 
+        <Container className='d-flex align-items-start justify-content-center mt-3 g-0' style={{minHeight: '100vh'}}>
+            <Row className='w-100 overflow-hidden' 
             style = {{
                 minHeight: '30vh',
                 backgroundColor: '#2D2424',
@@ -28,20 +29,24 @@ function Book(props) {
                 borderWidth: '5px',
                 borderRadius: '1rem',
                 }}>
-                <Row className='text-center w-100 overflow-hidden'
+                <Row className='text-center w-100 g-0'
                 style ={{
                     maxHeight: '2rem',
+                    width: '20px',
                     backgroundColor: '#E0C097',
                     borderColor: '#5C3D2E',
                     color: '#B85C38',
                     fontSize: '1.25rem',
                     fontWeight: '800'
                 }}>
-                    Book Shelf
+                    <Col>Book Shelf</Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <Row md={2}>
+                <Row >
+                    <Col md={4} className='overflow-auto p-3' 
+                    style={{
+                        maxHeight: '70vh'
+                        }}>
+                        <Row md={1} >
                             {props.books.map((book) =>
                                 <Card onClick={() => handleClick(props.currentProject.name, book.title, book)} className='shadow m-1'
                                 style={{
@@ -51,7 +56,6 @@ function Book(props) {
                                     fontSize: '1rem',
                                     borderRadius: '1rem',
                                     borderWidth: '.25rem',
-                                    maxWidth: '10vw',
                                     maxHeight: '30vh'
                                 }}>
                                     <Card.Img variant='top' src={ScrollWall} className='overflow-hidden mt-1 shadow'
@@ -70,11 +74,11 @@ function Book(props) {
                             )}
                         </Row>
                     </Col>
-                    <Col>
-                        <Chapter currentProject={props.currentProject} chapters={props.chapters} book={currentBook.book}/>
+                    <Col >
+                        <Chapter currentProject={props.currentProject} chapters={props.chapters} book={currentBook.book} getChapterList={props.getChapterList}/>
                     </Col>
                 </Row>
-                <AddBook currentProject={props.currentProject}/>
+                <AddBook currentProject={props.currentProject} getBookList={props.getBookList}/>
             </Row>
         </Container>
      );

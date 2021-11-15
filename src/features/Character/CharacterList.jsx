@@ -15,7 +15,7 @@ function CharacterList(props) {
         props.getCurrentCharacter(userId, ProjectId, CharacterId)
         toggle()
         console.log(props.currentCharacter.name)
-        console.log(isCharacterSelected)
+        // console.log(isCharacterSelected)
     }
 
 

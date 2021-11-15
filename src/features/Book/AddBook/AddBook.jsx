@@ -32,6 +32,7 @@ function AddBook(props) {
     const postBook = async (book, projectID, userID) => {
         await axios.post('http://127.0.0.1:8000/' + userID + '/project/' + projectID + '/book/list', book)
         .then( res => {
+            props.getBookList(projectID, userID)
             console.log(res)
         }).catch(err => {
             console.log("Error in postBook: " + err);
@@ -91,7 +92,7 @@ function AddBook(props) {
                                     <Form.Control as='textarea' rows={5} className='form-control shadow m-1' name='summary' type='text' placeholder='Summary...' onChange={handleChange} />
                             </Form.Group>
                         </Row>
-                        <Button variant="secondary" className='shadow mt-4 m-1' type="submit"  
+                        <Button variant="secondary" className='shadow mt-4 m-1' type="submit"  onClick={handleClose}
                             style={{
                                 backgroundColor: '#B85C38',
                                 borderColor: '#B85C38',
