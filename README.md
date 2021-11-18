@@ -2,7 +2,7 @@
 
 ## Developer : Matthew Taylor
 
-### Tech Stack: Firebase | Firestore Database | Firebase Authentication - Python | Django | Django REST - Javascript | React JS
+#### Stack: Firebase | Firestore Database | Firebase Authentication - Python | Django | Django REST - Javascript | React JS
 
 This project is a personal passion project for me stemming from seeing my peers, colleagues, and other creatives struggle keeping their ideas organized and stress free. Sadly this has lead to many of them dropping what could have been wonderful worlds and settings for their next book, film, or even DnD Campaigns. This is what my application is for, a helpful means for a creative to put their stories, references, and characters all in one place where they can view them and organize them in a stress-free manner as they work. 
 
