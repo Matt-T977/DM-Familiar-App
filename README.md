@@ -11,29 +11,21 @@ To accomplish this the technologies I used for the backend were: Firebase’s Fi
 ### Notable Features:
 
 #### Frontend:
--User Creation with Google sign in capability and OAuth Authentication utilizing Firebase
-
--Project Creation with a customisable template utilizing React Components create only what the user selects.
-
--Fully dynamic Project list page that will adjust as projects are added or deleted via CRUD operations.
-
--Dashboard that populates as you create more content and displays it in a clear and intutive manner.
-
--Ability to adjust what is or isn't displayed on the dashboard quick and easily.
-
--Able to upload Word DocX and have it translated into the database to be displayed along with any other documents created.
-
--Fully interactive customer sheet that you create or edit as needed. 
+- User Creation with Google sign in capability and OAuth Authentication utilizing Firebase
+- Project Creation with a customisable template utilizing React Components create only what the user selects.
+- Fully dynamic Project list page that will adjust as projects are added or deleted via CRUD operations.
+- Dashboard that populates as you create more content and displays it in a clear and intutive manner.
+- Ability to adjust what is or isn't displayed on the dashboard quick and easily.
+- Able to upload Word DocX and have it translated into the database to be displayed along with any other documents created.
+- Fully interactive customer sheet that you create or edit as needed. 
     
 #### Backend:
--Full CRUD functionality for all models, including scaffolding for future features in the frontend IE: Video, Audio, etc
-
--REST API fully functioning with Firebase's Firestore Database to store and recieve data through HTTP requests from the frontend.
+- Full CRUD functionality for all models, including scaffolding for future features in the frontend IE: Video, Audio, etc
+- REST API fully functioning with Firebase's Firestore Database to store and recieve data through HTTP requests from the frontend.
 
 #### Database:
--Firestore cloud database for all general storage
-
--Google Cloud Storage will be utilized in a future iteration for Images, Video, and Audio
+- Firestore cloud database for all general storage
+- Google Cloud Storage will be utilized in a future iteration for Images, Video, and Audio
 
 ## Project Dashboard
 ![Project_Dashboard](https://user-images.githubusercontent.com/89653410/142480485-3fe0c00e-5cf6-4410-8079-982b6f21c7bc.png)
