@@ -4,6 +4,8 @@ import projectStockImage from '../../Static/projectStockImage.jpg'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import './ProjectCreator.css'
+
 
 
 function ProjectCreator(props) {
@@ -71,46 +73,37 @@ function ProjectCreator(props) {
         });
     }
 
+    <style>
 
+    </style>
 
     return ( 
+        
         <Container className='d-flex align-items-center justify-content-center' style={{minHeight: '100vh'}}>
             <Row className='w-100 align-items-center pt-5' 
-            style = {{
-                maxWidth: '90vw',
-                minHeight: '75vh',
-                backgroundColor: '#E0C097',
-                borderStyle: 'solid',
-                borderColor: '#5C3D2E',
-                borderWidth: '5px',
-                borderRadius: '1rem',
-                }}>
+                style = {{
+                    maxWidth: '90vw',
+                    minHeight: '75vh',
+                    backgroundColor: '#E0C097',
+                    borderStyle: 'solid',
+                    borderColor: '#5C3D2E',
+                    borderWidth: '5px',
+                    borderRadius: '1rem',
+                    }}>
                 <Col className='m-3'>
                     <Container>
                         <img className='d-block w-100 shadow' src={projectStockImage} alt='stock' 
-                        style={{
-                            borderRadius: '1rem'
-                        }}/>
-                        <Button className='w-100 text-start'
-                        style={{
-                            backgroundColor: '#B85C38',
-                            color: '#E0C097',
-                            fontStyle: 'italic',
-                            fontSize: '2rem',
-                            position: 'relative',
-                            bottom: '8rem',
-                            opacity: '.8'
-                        }}>
+                             style={{borderRadius: '1rem'}}/>
+                        <Button className='w-100 text-start upload-button'>
                             Upload Project Image
                         </Button>
                     </Container>
                 </Col>
                 <Col className='m-3'>
                     <h2 className='text-center mb-3'
-                    style={{
-                        color: '#B85C38',
-                        textShadow: '2.5px 2.5px 6px'
-                    }}>Create your Project!</h2>
+                        style={{color: '#B85C38',textShadow: '2.5px 2.5px 6px'}}>
+                        Create your Project!
+                    </h2>
                     <Form onSubmit={handleSubmit}
                     style={{
                         color: '#B85C38',
@@ -159,14 +152,7 @@ function ProjectCreator(props) {
                             </Col>
                         </Row>
                         
-                        <Button className='d-flex w-50 mx-auto justify-content-center mt-3 shadow' type='submit' 
-                            style={{
-                                backgroundColor: '#B85C38',
-                                borderColor: '#B85C38',
-                                color: '#E0C097',
-                                fontFamily: ('EB Garamond', 'serif'),
-                                fontStyle: 'italic',
-                            }}>
+                        <Button className='d-flex w-50 mx-auto justify-content-center mt-3 shadow button-create' type='submit'>
                             Create Project
                         </Button>
                     </Form>

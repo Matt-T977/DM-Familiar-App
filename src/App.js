@@ -84,23 +84,23 @@ function App() {
                                   getBookList={getBookList}/> 
                               </RequireAuth>} />
             <Route path = '/create-project' 
-            element = { <RequireAuth>
-                          <ProjectCreator 
-                            getCurrentProject={getCurrentProject}/>
-                        </RequireAuth>} />
+                  element = { <RequireAuth>
+                                <ProjectCreator 
+                                  getCurrentProject={getCurrentProject}/>
+                              </RequireAuth>} />
             <Route path = '/dashboard' 
-              element = { <RequireAuth>
-                            <Dashboard 
-                              currentProject={currentProject.currentProject} 
-                              getCharacterList={getCharacterList} 
-                              getCurrentCharacter={getCurrentCharacter} 
-                              characters={characterList.characters} 
-                              currentCharacter={currentCharacter.character}
-                              getBookList={getBookList}
-                              getChapterList={getChapterList}
-                              books={bookList.books}
-                              chapters={chapterList.chapters}/>
-                          </RequireAuth>} />
+                  element = { <RequireAuth>
+                                <Dashboard 
+                                  currentProject={currentProject.currentProject} 
+                                  getCharacterList={getCharacterList} 
+                                  getCurrentCharacter={getCurrentCharacter} 
+                                  characters={characterList.characters} 
+                                  currentCharacter={currentCharacter.character}
+                                  getBookList={getBookList}
+                                  getChapterList={getChapterList}
+                                  books={bookList.books}
+                                  chapters={chapterList.chapters}/>
+                              </RequireAuth>} />
             <Route path = '/signup' element = {<SignUp /> } />
             <Route path = '/login' element = {<Login /> } />
             
