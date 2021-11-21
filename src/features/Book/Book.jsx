@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ButtonGroup, Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import ScrollWall from '../../Static/ScrollWall.jpg'
@@ -23,6 +23,15 @@ function Book(props) {
         deleteBook(projectId, BookId, auth.currentUser.uid);
         console.log()
     }
+
+    // useEffect(() => {
+    //     try {
+    //         props.getBookList(props.currentProject.name, auth.currentUser.uid)
+    //     } catch {
+    //         console.log('Unable to get Book List')
+    //     }
+    //     console.log("Get Book List Effect")
+    // }, [])
 
     const deleteBook = async (projectId, BookId, userId) => {
         await axios.delete('http://127.0.0.1:8000/' + userId + '/project/' + projectId + '/book/' + BookId)
