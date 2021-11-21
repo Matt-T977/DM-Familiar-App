@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { ButtonGroup, Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import ScrollWall from '../../Static/ScrollWall.jpg'
 import AddBook from './AddBook/AddBook';
 import Chapter from './Chapter/Chapter';
+import axios from 'axios';
 import './Book.css'
 
 
@@ -16,6 +17,18 @@ function Book(props) {
         setCurrentBook({book: book})
         console.log({currentBook})
         props.getChapterList(ProjectID, auth.currentUser.uid, BookID)
+    }
+
+    const handleDelete = (projectId, BookId) => {
+        deleteBook(projectId, BookId, auth.currentUser.uid);
+        console.log()
+    }
+
+    const deleteBook = async (projectId, BookId, userId) => {
+        await axios.delete('http://127.0.0.1:8000/' + userId + '/project/' + projectId + '/book/' + BookId)
+        .then(response => {
+          props.getBookList(auth.currentUser.uid);
+        }).catch(err => {console.log(err);})
     }
 
     return ( 
@@ -65,11 +78,22 @@ function Book(props) {
                                         objectFit: 'cover'
 
                                         }}/>
-                                        <Card.Body>
-                                            <Card.Title className='text-center'>{book.title}</Card.Title>
-                                            <Card.Text className='overflow-auto'>{book.summary}</Card.Text>
-                                            <Card.Title>{book.category}</Card.Title>
-                                        </Card.Body>
+                                    <Card.Body>
+                                        <Card.Title className='text-center'>{book.title}</Card.Title>
+                                        <Card.Text className='overflow-auto'>{book.summary}</Card.Text>
+                                        <Card.Title>{book.category}</Card.Title>
+                                        <div align='center'>
+                                            <ButtonGroup size='sm'>
+                                                <Button variant='success'>
+                                                    Edit
+                                                </Button>
+                                                <Button variant='danger' onClick={() => handleDelete(props.currentProject.name, book.title)}>
+                                                    Delete
+                                                </Button>
+                                            </ButtonGroup>
+                                        </div>
+
+                                    </Card.Body>
                                 </Card>
                             )}
                         </Row>
