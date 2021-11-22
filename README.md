@@ -27,7 +27,7 @@ To accomplish this the technologies I used for the backend were: Firebase’s Fi
 - Firestore cloud database for all general storage
 - Google Cloud Storage will be utilized in a future iteration for Images, Video, and Audio
 
-#### [Youtube Presentation Link](https://youtu.be/QDF2tCjXFFw)
+### [Youtube Presentation Link](https://youtu.be/QDF2tCjXFFw)
 
 ## Project Dashboard
 ![Project_Dashboard](https://user-images.githubusercontent.com/89653410/142480485-3fe0c00e-5cf6-4410-8079-982b6f21c7bc.png)
